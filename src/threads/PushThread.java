@@ -20,7 +20,7 @@ import javax.wireless.messaging.MessageConnection;
 import javax.wireless.messaging.TextMessage;
 import javax.microedition.io.Connector;
 import javax.microedition.io.PushRegistry;
-import com.sun.lwuit.Dialog;
+//import com.sun.lwuit.Dialog;
 import util.Contents;
 import jmc.GuiMidlet;
 
@@ -56,7 +56,7 @@ public class PushThread extends Thread
 			if (register) 
 			{
 				PushRegistry.registerConnection("sms://:5444", midlet.getClass().getName(), "*");
-				Dialog.show("", Contents.done, null, Dialog.TYPE_CONFIRMATION,null, 3000);
+				//Dialog.show("", Contents.done, null, Dialog.TYPE_CONFIRMATION,null, 3000);
 				
 			}
 			else //show the arrived sms
@@ -65,7 +65,7 @@ public class PushThread extends Thread
 				TextMessage msg;
 				msg = (TextMessage)con.receive();
 				text = msg.getPayloadText();
-				Dialog.show("SMS", text, null, Dialog.TYPE_CONFIRMATION,null, 4000);
+				//Dialog.show("SMS", text, null, Dialog.TYPE_CONFIRMATION,null, 4000);
 				
 				
 			}
@@ -74,7 +74,7 @@ public class PushThread extends Thread
 		catch (Exception e)
 		{
 			//midlet.display.setCurrent(Contents.noPhone, midlet.getGuiOnlineMenu());
-			Dialog.show("", Contents.noPhone, null, Dialog.TYPE_ERROR,null, 3000);
+			//Dialog.show("", Contents.noPhone, null, Dialog.TYPE_ERROR,null, 3000);
 			
 			return;
 		}

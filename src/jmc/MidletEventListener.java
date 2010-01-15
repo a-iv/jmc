@@ -22,17 +22,19 @@ import jabber.presence.*;
 import util.Datas;
 import util.Contents;
 import java.util.Hashtable;
-import com.sun.lwuit.Command;
+import javax.microedition.lcdui.Command;
+/*
 import com.sun.lwuit.Container;
 import com.sun.lwuit.Dialog;
 import com.sun.lwuit.Label;
 import com.sun.lwuit.events.SelectionListener;
+*/
 
 /**
  * Midlet events manager
  * @author Gabriele Bianchi
  */
-public class MidletEventListener implements JabberListener, SelectionListener
+public class MidletEventListener implements JabberListener/*, SelectionListener*/
 {
 	private GuiMidlet midlet;
 	//public Display display; 
@@ -78,7 +80,7 @@ public class MidletEventListener implements JabberListener, SelectionListener
 		//display.setCurrent(new Alert("DISCONNECTED", reason, Datas.images.displayImage("disconnected"), AlertType.INFO),midlet.getGuiOfflineMenu());
 		
 		midlet.getGuiOfflineMenu();
-		Dialog.show("DISCONNECTED", reason, null, Dialog.TYPE_WARNING,null, 3000);
+		//Dialog.show("DISCONNECTED", reason, null, Dialog.TYPE_WARNING,null, 3000);
 		Datas.readRoster = false;
 		midlet.internal_state = OFFLINE;
 	}
@@ -92,7 +94,7 @@ public class MidletEventListener implements JabberListener, SelectionListener
 		midlet.internal_state = OFFLINE;
 		
 		midlet.getGuiOfflineMenu();
-		Dialog.show("DISCONNECTED", "You have been disconnected", null, Dialog.TYPE_WARNING,Datas.images.displayImage("disconnected"), 3000);
+		//Dialog.show("DISCONNECTED", "You have been disconnected", null, Dialog.TYPE_WARNING,Datas.images.displayImage("disconnected"), 3000);
 		Datas.readRoster = false;
 		midlet.internal_state = OFFLINE;
 	}
@@ -108,7 +110,7 @@ public class MidletEventListener implements JabberListener, SelectionListener
 		//Alert a = new Alert("Error", text, null, AlertType.INFO);
 		//a.setTimeout(Alert.FOREVER);
 		//display.setCurrent(a);
-		Dialog.show("Error", text, null, Dialog.TYPE_ERROR,null, 3000);
+		//Dialog.show("Error", text, null, Dialog.TYPE_ERROR,null, 3000);
 		
 	}
 	/**
@@ -121,13 +123,13 @@ public class MidletEventListener implements JabberListener, SelectionListener
 		if (offline)
 		{
 			//display.setCurrent(new Alert("DISCONNECTED", e.getMessage(), , AlertType.INFO), midlet.getGuiOfflineMenu());
-			Dialog.show("DISCONNECTED", e.getMessage(), null, Dialog.TYPE_WARNING,Datas.images.displayImage("disconnected"), 3000);
+			//Dialog.show("DISCONNECTED", e.getMessage(), null, Dialog.TYPE_WARNING,Datas.images.displayImage("disconnected"), 3000);
 			
 			midlet.internal_state = OFFLINE;
 			midlet.getGuiOfflineMenu();
 		}
-		else
-			Dialog.show("", Contents.failGtw, null, Dialog.TYPE_ERROR,null, 3000);
+		else;
+			//Dialog.show("", Contents.failGtw, null, Dialog.TYPE_ERROR,null, 3000);
 		
 			//display.setCurrent(Contents.failGtw);
 
@@ -146,31 +148,31 @@ public class MidletEventListener implements JabberListener, SelectionListener
 			midlet.getGuiOnlineMenu();
 			//display = Display.getDisplay(midlet);
 			//display.setCurrent(new Alert("New Message", Contents.new_convers + _conv.name, Datas.images.displayImage("message"), info), midlet.getGuiOnlineMenu());
-			Dialog.show("New Message", Contents.new_convers + _conv.name, null, Dialog.TYPE_INFO,Datas.images.displayImage("message"), 3000);
+			//Dialog.show("New Message", Contents.new_convers + _conv.name, null, Dialog.TYPE_INFO,Datas.images.displayImage("message"), 3000);
 			
 			
 		} else if ((midlet.internal_state == CONVERSATION) && 
 				(_conv == midlet.currentConversation)) {
 			// update if its the current conversation
 			//display = Display.getDisplay(midlet);
-			midlet.getGuiUpdateConversation(0);
+			//midlet.getGuiUpdateConversation(0);
 		} else if (midlet.internal_state == MULTI_CHAT || midlet.internal_state == INVITATION) {
 			//infopool.put("multichat", _conv.name);
 			midlet.currentConversation = _conv;
 			midlet.internal_state = CONVERSATION;
-			midlet.getGuiConversation(0);
+			//midlet.getGuiConversation(0);
 		}else if (midlet.internal_state == ROSTER) {
-			Dialog.show("New Message", Contents.new_convers + _conv.name, null, Dialog.TYPE_INFO,Datas.images.displayImage("message"), 3000);
+			//Dialog.show("New Message", Contents.new_convers + _conv.name, null, Dialog.TYPE_INFO,Datas.images.displayImage("message"), 3000);
 			//display.setCurrent(new Alert("New Message", Contents.new_convers + _conv.name, Datas.images.displayImage("message"), info));
 		}
 		else {
 			// send an alert
-			midlet.tabbedPane.addTab(_conv.name, new Container());
+			//midlet.tabbedPane.addTab(_conv.name, new Container());
            
             //midlet.getGuiConversation(midlet.tabbedPane.getSelectedIndex());
             
 			//display.setCurrent(new Alert("New Message", Contents.new_convers + _conv.name, Datas.images.displayImage("message"), info));
-			Dialog.show("New Message", Contents.new_convers + _conv.name, null, Dialog.TYPE_INFO,Datas.images.displayImage("message"), 3000);
+			//Dialog.show("New Message", Contents.new_convers + _conv.name, null, Dialog.TYPE_INFO,Datas.images.displayImage("message"), 3000);
 			
 			//info.playSound(display); //come emetto un suono??
 		}
@@ -194,7 +196,7 @@ public class MidletEventListener implements JabberListener, SelectionListener
 		if ((midlet.internal_state == CONVERSATION) && 
 				(_conv == midlet.currentConversation)) {
 			// update if its the current conversation
-					midlet.getGuiUpdateConversation(0);
+					//midlet.getGuiUpdateConversation(0);
 		} else {
 			// send an alert
 			if (tab > 0) { //TODO: da testare l'aggiunta di un'icona all'arrivo del msg sulla tab
@@ -202,12 +204,12 @@ public class MidletEventListener implements JabberListener, SelectionListener
                 String name = _conv.name;
                 if (name.indexOf("@") != -1)
                     name= name.substring(0, name.indexOf("@"));
-                midlet.tabbedPane.setTabTitle(name+" (m)", null, tab);
+                //midlet.tabbedPane.setTabTitle(name+" (m)", null, tab);
 				//midlet.tabbedPane.insertTab(_conv.name, Datas.images.displayImage("message"), new Container(), tab);
 			//	midlet.tabbedPane.setTabTitle(_conv.name, Datas.images.displayImage("message"), tab);
 			}else if (tab == -1) {
 				//server message
-				Dialog.show(title, text, "Ok", "");
+				//Dialog.show(title, text, "Ok", "");
 			}
 		//	AlertType info = AlertType.INFO;
 			//display.setCurrent(new Alert(title, text, Datas.images.displayImage("message"), info));
@@ -231,7 +233,7 @@ public class MidletEventListener implements JabberListener, SelectionListener
 		if ((midlet.internal_state == CONVERSATION) && 
 				(_conv == midlet.currentConversation)) {
 			// update if its the current conversation
-					midlet.getGuiUpdateConversation(0);
+					//midlet.getGuiUpdateConversation(0);
 		} 
 	}
 	/**
@@ -246,7 +248,7 @@ public class MidletEventListener implements JabberListener, SelectionListener
 		infopool.put("invit_room", room);
 		infopool.put("invit_internal_state", new Integer(midlet.internal_state));
 		midlet.internal_state = INVITATION;
-		midlet.getGuiChoose("invitation");
+		//midlet.getGuiChoose("invitation");
 	} 
 	/**
 	 * PresenceListener method for presence notifications 
@@ -278,7 +280,7 @@ public class MidletEventListener implements JabberListener, SelectionListener
 					midlet.currentjid.setPresence(Presence.getPresence(_presence));
 				else
 					midlet.currentjid.setPresence(Presence.getPresence(_presence), _roster.status_message);
-				midlet.getGuiRosterItem();
+				//midlet.getGuiRosterItem();
 				
 			} 
 			else if (midlet.internal_state == ONLINE)  {
@@ -321,7 +323,7 @@ public class MidletEventListener implements JabberListener, SelectionListener
 				Datas.registerRoster(_roster);
 			}
 			midlet.internal_state = ONLINE;
-			Dialog.show(_roster.getLittleJid()+" added!", "Subscription not accepted/pending.", null, Dialog.TYPE_INFO,null, 3000);
+			//Dialog.show(_roster.getLittleJid()+" added!", "Subscription not accepted/pending.", null, Dialog.TYPE_INFO,null, 3000);
 			midlet.getGuiOnlineMenu();
 			
 		}
@@ -335,7 +337,7 @@ public class MidletEventListener implements JabberListener, SelectionListener
 			}
 			
 			midlet.internal_state = ROSTER;
-			Dialog.show("",_roster.getUsername()+" subscribed!", null, Dialog.TYPE_CONFIRMATION,null, 3000);
+			//Dialog.show("",_roster.getUsername()+" subscribed!", null, Dialog.TYPE_CONFIRMATION,null, 3000);
 			
 			//display.setCurrent(new Alert(_roster.getUsername()+" subscribed!", "Changes Saved", null, AlertType.CONFIRMATION), midlet.getGuiRosterItem());
 		}
@@ -348,7 +350,7 @@ public class MidletEventListener implements JabberListener, SelectionListener
 			infopool.put("internal_state", new Integer(midlet.internal_state));
 			midlet.internal_state = SUBSCRIPTION;
 			midlet.currentjid = _roster;
-			midlet.getGuiChoose("subscription");
+			//midlet.getGuiChoose("subscription");
 		}
 		
 		
@@ -365,7 +367,7 @@ public class MidletEventListener implements JabberListener, SelectionListener
 		//display.setCurrent(new Alert("", "Reading Roster...", Contents.displayImage("connected"), AlertType.INFO), midlet.getGuiOnlineMenu());
 		
 		midlet.getGuiOnlineMenu();
-		Dialog.show("","Reading Roster...", null, Dialog.TYPE_INFO,Contents.displayImage("connected"), 3000);
+		//Dialog.show("","Reading Roster...", null, Dialog.TYPE_INFO,Contents.displayImage("connected"), 3000);
 		
 	}
 	/**
@@ -377,11 +379,13 @@ public class MidletEventListener implements JabberListener, SelectionListener
 		
 		infopool.put("jud_message", info);
 		if (midlet.internal_state != JUD)
-			Dialog.show("Search user",new Label(info), new Command[]{Contents.ok}, Dialog.TYPE_INFO,null);
+			;
+			//Dialog.show("Search user",new Label(info), new Command[]{Contents.ok}, Dialog.TYPE_INFO,null);
 		
 			//display.setCurrent(new Alert("Jud alert", info, null,AlertType.INFO));
 		else 
-			midlet.getGuiJudMenu();
+			;
+			//midlet.getGuiJudMenu();
 	}
 	/**
 	 * Notify an error in presence management
@@ -406,7 +410,7 @@ public class MidletEventListener implements JabberListener, SelectionListener
 	 */
 	public void updateScreen()
 	{
-		midlet.setCurrentDisplay();
+		//midlet.setCurrentDisplay();
 	}
 
 
@@ -428,7 +432,7 @@ public class MidletEventListener implements JabberListener, SelectionListener
 				if (keypressed) {
 					midlet.internal_state = CONVERSATION;
 					midlet.currentConversation = (Conversation)Datas.conversations.elementAt(newtab-1);
-					midlet.getGuiConversation(newtab);
+					//midlet.getGuiConversation(newtab);
 				}
 			}
 			

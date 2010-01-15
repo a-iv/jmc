@@ -760,7 +760,7 @@ public class StanzaReader {
 			threadId = _node.getChild("thread").text;
 		} else {
 			// _node has no "thread" child: server message?
-			if (message.from.equalsIgnoreCase(Datas.hostname) ||  Datas.isGateway(message.from))
+			if (message.from.equals(Datas.hostname) ||  Datas.isGateway(message.from))
 			{
 				System.out.println("server message");
 				conversation = new Conversation(message.from);

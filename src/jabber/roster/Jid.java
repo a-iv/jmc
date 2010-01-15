@@ -15,9 +15,9 @@
 
 package jabber.roster;
 
+import javax.microedition.lcdui.Image;
 import jabber.presence.Presence;
 import util.Contents;
-import com.sun.lwuit.Image;
 /**
  * Jabber ID. It has one of the following form: 
  * - servername

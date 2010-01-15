@@ -21,12 +21,13 @@ import java.io.InputStream;
 import javax.microedition.io.Connector;
 import javax.microedition.io.StreamConnection;
 import util.Contents;
-/*import javax.microedition.lcdui.Form;
+import javax.microedition.lcdui.Form;
 import javax.microedition.lcdui.Alert;
 import javax.microedition.lcdui.Display;
 import javax.microedition.lcdui.Command;
 import javax.microedition.lcdui.Displayable;
-import javax.microedition.lcdui.CommandListener;*/
+import javax.microedition.lcdui.CommandListener;
+/*
 import com.sun.lwuit.Command;
 import com.sun.lwuit.Dialog;
 import com.sun.lwuit.Form;
@@ -35,7 +36,7 @@ import com.sun.lwuit.MediaComponent;
 import com.sun.lwuit.events.ActionEvent;
 import com.sun.lwuit.events.ActionListener;
 import com.sun.lwuit.layouts.BorderLayout;
-
+*/
 import javax.microedition.media.MediaException;
 import javax.microedition.media.Player;
 import javax.microedition.media.Manager;
@@ -49,7 +50,7 @@ import javax.microedition.media.control.VideoControl;
  * Player manager for audio/video
  * 
  */
-class PlayerManager implements Runnable, ActionListener, PlayerListener {
+class PlayerManager implements Runnable, /*ActionListener,*/ PlayerListener {
 
 	
 	Form form;
@@ -66,8 +67,8 @@ class PlayerManager implements Runnable, ActionListener, PlayerListener {
 		//display = midlet.display;
         	is_image = isImage;
 		form = new Form("Player Manager");
-		form.setLayout(new BorderLayout());
-		form.setCommandListener(this);
+/*		form.setLayout(new BorderLayout());
+		form.setCommandListener(this);*/
        		if (is_image)
             	form.addCommand(Contents.back);
         	else
@@ -77,12 +78,12 @@ class PlayerManager implements Runnable, ActionListener, PlayerListener {
 	} 
 
 	public void run() {
-
+/*
    	 try {
       // since we are loading data over the network, a delay can be
       // expected
            
-            Dialog.show("", Contents.done, null, Dialog.TYPE_INFO,null, 3000);
+            //Dialog.show("", Contents.done, null, Dialog.TYPE_INFO,null, 3000);
 			//bisogna richiamare getguiconv?
 
         StreamConnection fconn = (StreamConnection)Connector.open(locator);
@@ -140,6 +141,7 @@ class PlayerManager implements Runnable, ActionListener, PlayerListener {
                 Dialog.show("", Contents.noPhone, null, Dialog.TYPE_ERROR,null, 3000);
 				//bisogna richiamare getguiconv?
     			}
+    			*/
   	}
 /*
 	public void commandAction(Command command, Displayable disp) {
@@ -193,13 +195,13 @@ class PlayerManager implements Runnable, ActionListener, PlayerListener {
 					}
       			}
 
-      			form.show();
+      			//form.show();
     		} else if(event.equals(PlayerListener.CLOSED)) {
 
-      			form.removeAll(); // clears the form of any previous controls
+      			//form.removeAll(); // clears the form of any previous controls
     		}
   	}
-
+/*
 	public void actionPerformed(ActionEvent arg0) {
 		Command command = arg0.getCommand();
         try {
@@ -220,5 +222,5 @@ class PlayerManager implements Runnable, ActionListener, PlayerListener {
         }
 		
 	}
-	
+*/	
 }

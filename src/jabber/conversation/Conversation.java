@@ -16,9 +16,10 @@
 package jabber.conversation;
 
 import java.util.Vector;
+
+import javax.microedition.lcdui.Image;
 import xmlstreamparser.*;
 import jabber.roster.Jid;
-import com.sun.lwuit.Image;
 /**
  * Conversation class
  *

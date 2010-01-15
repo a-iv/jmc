@@ -36,7 +36,7 @@ public abstract class Chat extends Conversation {
      * @param _message
      */
     public void appendFromMe(Message _message) {
-	if (!stanzaType.equalsIgnoreCase("groupchat"))
+	if (!stanzaType.equals("groupchat"))
         	messages.addElement(_message);
         broadcast(_message);
     }

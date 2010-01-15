@@ -21,8 +21,6 @@ import javax.wireless.messaging.MessageConnection;
 import javax.wireless.messaging.TextMessage;
 import javax.microedition.io.Connector;
 
-import com.sun.lwuit.Dialog;
-
 import util.Contents;
 import jmc.GuiMidlet;
 
@@ -58,13 +56,13 @@ public class SMSThread extends Thread
 			TextMessage msg = (TextMessage)conn.newMessage(MessageConnection.TEXT_MESSAGE);
 			msg.setPayloadText(text);
 			conn.send(msg);
-			Dialog.show("", Contents.done, null, Dialog.TYPE_CONFIRMATION, null, 3000);
+			//Dialog.show("", Contents.done, null, Dialog.TYPE_CONFIRMATION, null, 3000);
 			//midlet.display.setCurrent(Contents.done, midlet.getGuiRosterItem());
 
 		}
 		catch (Exception e)
 		{
-			Dialog.show("", Contents.noPhone, null, Dialog.TYPE_ERROR, null, 3000);
+			//Dialog.show("", Contents.noPhone, null, Dialog.TYPE_ERROR, null, 3000);
 			return;
 		}
 

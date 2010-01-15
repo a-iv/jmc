@@ -285,7 +285,7 @@ public class Datas {
 		while (contacts.hasMoreElements())
 		{
 			Jid temp = (Jid)contacts.nextElement();
-			if (!Presence.getPresence("unavailable").equalsIgnoreCase(temp.getPresence()))
+			if (!Presence.getPresence("unavailable").equals(temp.getPresence()))
 				roster_vector.addElement(temp);
 		}
 
@@ -447,7 +447,7 @@ public class Datas {
 	{
 		if (gateways.size() == 0) 
 		{
-			if (gtw.indexOf("@") == -1 && !gtw.equalsIgnoreCase(hostname)) //weak condition!!!
+			if (gtw.indexOf("@") == -1 && !gtw.equals(hostname)) //weak condition!!!
 				return true; 
 			else
 				return false;
@@ -456,7 +456,7 @@ public class Datas {
 
 		for (int i = 0; i < gateways.size(); i++)
 		{
-			if (gtw.equalsIgnoreCase((String)gateways.elementAt(i)))
+			if (gtw.equals((String)gateways.elementAt(i)))
 				return true;
 		}
 		return false;

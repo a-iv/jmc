@@ -15,7 +15,7 @@
  */
 package jmc.media;
 
-import com.sun.lwuit.Dialog;
+//import com.sun.lwuit.Dialog;
 
 import jmc.GuiMidlet;
 import util.Contents;
@@ -65,7 +65,7 @@ public class MediaManager {
 			}catch(javax.microedition.io.ConnectionNotFoundException e){
 				
 				//midlet.display.setCurrent(Contents.noPhone, midlet.getGuiConversation());
-				Dialog.show("", Contents.noPhone, null, Dialog.TYPE_ERROR,null, 3000);
+				//Dialog.show("", Contents.noPhone, null, Dialog.TYPE_ERROR,null, 3000);
 				//bisogna richiamare getguiconv?
 				return;
 			}

@@ -18,9 +18,10 @@
 package util;
 
 import java.util.Hashtable;
-import com.sun.lwuit.Image;
-import com.sun.lwuit.Command;
+import javax.microedition.lcdui.Image;
+import javax.microedition.lcdui.Command;
 import java.io.InputStream;
+
 
 /**
  *Class for GUI contents like images
@@ -39,25 +40,25 @@ public class Contents {
 	public static String chatWarn = "(warning: rooms discovery needs a lot of memory)";
 	public static String credits = "JabberMixClient is created by Gabriele Bianchi (gabriele.bianchi@gmail.com)";
 	//Gui Commands
-	public static Command ok = new Command("Ok", 1);
-	public static Command send = new Command("Send", 1);
-	public static Command accept = new Command("Accept",1);
-	public static Command back = new Command("Back", 0);
-	public static Command exit = new Command("Exit", 0);
-	public static Command disc = new Command("Actions", 0);
-	public static Command deny = new Command("Deny", 0);
-	public static Command history = new Command("History",  2);
-	//public static Command active = new Command("Open chat", 2);
-	public static Command delete = new Command("Close chat",  3);
-	public static Command stop = new Command("Stop",  0);
-	public static Command register = new Command("Register",  1);
-	public static Command unregister = new Command("Unregister",  2);
-	public static Command chat = new Command("Chat",  1);//NUOVO
-	public static Command info = new Command("Info",  2);//NUOVO
-	public static Command invite = new Command("Invite",  3);//NUOVO
+	public static Command ok = new Command("Ok", 1, 0);
+	public static Command send = new Command("Send", 1, 0);
+	public static Command accept = new Command("Accept",1, 0);
+	public static Command back = new Command("Back", 0, 0);
+	public static Command exit = new Command("Exit", 0, 0);
+	public static Command disc = new Command("Actions", 0, 0);
+	public static Command deny = new Command("Deny", 0, 0);
+	public static Command history = new Command("History",  2, 0);
+	//public static Command active = new Command("Open chat", 2, 0);
+	public static Command delete = new Command("Close chat",  3, 0);
+	public static Command stop = new Command("Stop",  0, 0);
+	public static Command register = new Command("Register",  1, 0);
+	public static Command unregister = new Command("Unregister",  2, 0);
+	public static Command chat = new Command("Chat",  1, 0);//NUOVO
+	public static Command info = new Command("Info",  2, 0);//NUOVO
+	public static Command invite = new Command("Invite",  3, 0);//NUOVO
 
 
-	public static Command select = new Command("Select",  1);
+	public static Command select = new Command("Select",  1, 0);
 	//other alert strings
 	public static String help = new String(help_text);
 	public static String noPhone = "Your device doesn't support this feature!";

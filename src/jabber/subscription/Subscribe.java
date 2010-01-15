@@ -152,7 +152,7 @@ public class Subscribe {
 		while (contacts.hasMoreElements())
 		{
 			Jid jid = new Jid((String)contacts.nextElement());
-			if (jid.getServername().equalsIgnoreCase(gateway))
+			if (jid.getServername().equals(gateway))
 				items.addElement(jid.getLittleJid());
 		}
 

@@ -22,31 +22,35 @@ import util.Contents;
 import jabber.subscription.*;
 import java.util.Vector;
 
-import com.sun.lwuit.Button;
-import com.sun.lwuit.Command;
-import com.sun.lwuit.Container;
-import com.sun.lwuit.Dialog;
-import com.sun.lwuit.Label;
-import com.sun.lwuit.TextArea;
-import com.sun.lwuit.Form;
-import com.sun.lwuit.events.ActionEvent;
-import com.sun.lwuit.events.ActionListener;
-import com.sun.lwuit.layouts.BoxLayout;
-import com.sun.lwuit.layouts.GridLayout;
-import com.sun.lwuit.plaf.Border;
+//import javax.microedition.lcdui.Button;
+import javax.microedition.lcdui.Command;
+import javax.microedition.lcdui.Form;
 
+/*import javax.microedition.lcdui.Container;
+import javax.microedition.lcdui.Dialog;
+import javax.microedition.lcdui.Label;
+import javax.microedition.lcdui.TextArea;
+import javax.microedition.lcdui.Form;
+import javax.microedition.lcdui.events.ActionEvent;
+import javax.microedition.lcdui.events.ActionListener;
+import javax.microedition.lcdui.layouts.BoxLayout;
+import javax.microedition.lcdui.layouts.GridLayout;
+import javax.microedition.lcdui.plaf.Border;
+*/
 /**
  * Screen for the gateway registration
  * @author Gabriele Bianchi
  *
  */
-public class GatewayForm extends Form implements ActionListener
+public class GatewayForm extends Form /*implements ActionListener*/
 {
 	private GuiMidlet midlet;
 	private Vector services;
-	public TextArea gateway = new TextArea(/*"Gateway hostname:",*/ "", 64);
-	public TextArea address = new TextArea(/*"User:",*/ "ex: myuser@hotmail.com", 1, 64, TextArea.EMAILADDR);
-	public TextArea password = new TextArea(/*"Password:",*/ "",1, 32, TextArea.PASSWORD);
+/*
+	public TextArea gateway = new TextArea("", 64); // "Gateway hostname:",
+	public TextArea address = new TextArea("ex: myuser@hotmail.com", 1, 64, TextArea.EMAILADDR); // "User:",
+	public TextArea password = new TextArea("", 1, 32, TextArea.PASSWORD); // "Password:",
+*/	
 	//public ButtonGroup choice = new ButtonGroup();//("Choose IM protocol", ChoiceGroup.EXCLUSIVE, Contents.gtwChoices, null);
 	
 	public GatewayForm(GuiMidlet _midlet)
@@ -54,7 +58,7 @@ public class GatewayForm extends Form implements ActionListener
 		super("Gateway");
 		midlet = _midlet;
 		services = Datas.server_services;
-		this.setLayout(new BoxLayout(BoxLayout.Y_AXIS));
+		//this.setLayout(new BoxLayout(BoxLayout.Y_AXIS));
 		configureFirstScreen();
 		
 	}
@@ -62,7 +66,7 @@ public class GatewayForm extends Form implements ActionListener
 	 * Configure screen
 	 */
 	public void configureRegistration(String trans) {
-
+/*
 		
 		this.removeAll();
 		
@@ -83,14 +87,14 @@ public class GatewayForm extends Form implements ActionListener
 		this.addCommand(Contents.unregister);
 		//this.addCommand(Contents.back);
 		this.setCommandListener(this);
-		
+		*/
 			
 	}
 	/**
 	 * Configure screen
 	 */
 	public void configureFirstScreen() {
-        
+        /*
 		//this.append(choice);
 		Container cont = new Container();
 		int elementWidth = 0;
@@ -98,7 +102,7 @@ public class GatewayForm extends Form implements ActionListener
 		
 		for (int i=0; i< Contents.gtwChoices.length; i++) {
 			//TODO: add image
-			Button b = new Button(Contents.gtwChoices[i] /*,img*/);
+			Button b = new Button(Contents.gtwChoices[i]); // ,img
 			b.getStyle().setBgTransparency(0);
 			b.getStyle().setBorder(Border.createLineBorder(1));
 			b.setAlignment(Label.CENTER);
@@ -122,7 +126,7 @@ public class GatewayForm extends Form implements ActionListener
 		this.addCommand(Contents.back);
 		this.setCommandListener(this);
 		
-			
+		*/
 	}
 
 	
@@ -179,6 +183,7 @@ public class GatewayForm extends Form implements ActionListener
 		}
 		return "";
 	 }
+	/*
 	public void actionPerformed(ActionEvent arg0) {
 		Command cmd = arg0.getCommand();
 		if (cmd == Contents.back)
@@ -290,6 +295,6 @@ public class GatewayForm extends Form implements ActionListener
         }
 	}
 	
-
+*/
 
 }
