@@ -1,0 +1,39 @@
+            *** microJabber ***
+
+
+Project : microJabber, jabber for light java devices.
+Author  : Gregoire Athanase
+Licence : LGPL
+
+Project hosted at sourceforge, http://sourceforge.net/projects/micro-jabber/
+
+
+
+Even if the documentation is still pretty raw, 
+it is nearly enough to start working on midlets!
+
+
+Docs for the XMPP PARSER:
+
+* parser_package.gif: describes the hooks, that's 
+all you need to know to use the parser in your app!!
+
+* parser_state_legend.gif: legend of the 
+parser_state_diagram.gif file :)
+
+* parser_state_diagram.gif: state diagram of the
+finite state machine which runs the parser. Useful
+if you want to modify the parser!
+
+
+Docs for the midlet implementations:
+
+* proxy_Design.gif: tells how to use the proxy.
+
+* proxy_Development.gif: describes the internals
+of the proxy, used only if you want to know exactly
+how it works.
+
+* threads.gif: threading architecture of the midlet.
+kind of very usefull!
+
