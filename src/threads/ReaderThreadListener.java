@@ -14,21 +14,22 @@
  */
 
 
-package util;
+package threads;
 
 /**
- * Error interface
+ * Reader Thread Listener
+ * Listens to an "int" reader thread.
+ *
+ * @author Gregoire Athanase
  */
-public interface ExceptionListener {
 
-  public void reportException(Thread _thread, Exception _ex);
+public interface ReaderThreadListener {
 
-  public void reportException(Exception _ex);
-  
   /**
-  *@author Gabriele Bianchi
-  *
-  */
-  public void reportRegistrationError(Exception _ex, boolean disconnect);
-  
+   * @param _object The Reader object which read the data
+   * @param _code Read value
+   */
+  public void read(Object _reader, int _code);
+  //public void read(Object _reader, char _code);
+
 }

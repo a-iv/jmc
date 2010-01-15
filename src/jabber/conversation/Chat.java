@@ -14,7 +14,11 @@
  */
 
 package jabber.conversation;
-
+/**
+ * Chat abstract class
+ * 
+ *
+ */
 public abstract class Chat extends Conversation {
     
     // OPAQUE xmpp attributes: only used to mirror the values in answers
@@ -28,15 +32,18 @@ public abstract class Chat extends Conversation {
     }
     
     /**
-    * New message from the user
-    */
+     * New message from the user
+     * @param _message
+     */
     public void appendFromMe(Message _message) {
-        messages.addElement(_message);
+	if (!stanzaType.equalsIgnoreCase("groupchat"))
+        	messages.addElement(_message);
         broadcast(_message);
     }
     
     /**
     * Send a message
+    * @param _message
     */
     protected abstract void broadcast(Message _message);
     

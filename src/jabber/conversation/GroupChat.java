@@ -15,24 +15,60 @@
 
 package jabber.conversation;
 
-import jabber.conversation.*;
-import jabber.roster.*;
+//import jabber.conversation.*;
+//import jabber.roster.Jid;
+//import jabber.roster.RosterList;
+import java.util.Vector;
+import util.Datas;
 
+/**
+ * 
+ *MultiChat class 
+ *
+ */
 public class GroupChat extends Chat {
 
-  RosterList rosters;  // the people we are talking with
-  
+  //public RosterList rosters; 
+  public Vector jids;
+  public String nick;
+  /*
   public GroupChat(RosterList _rosters, String _stanzaType, String _threadId) {
     super(_rosters.name, _stanzaType, _threadId);
     rosters = _rosters;
+  }*/
+  public GroupChat(Vector _jids, String _name, String _stanzaType, String _threadId, String _nick) {
+    super(_name, _stanzaType, _threadId);
+    jids = _jids;
+    nick = _nick;
   }
   
+  /**
+   * Modified by Gabriele Bianchi 04/01/2006
+  
   public void broadcast(Message _message) {
-      Roster roster;
+      Jid roster;
       for (int i=0; i<rosters.rosters.size(); i++) {
-          roster = (Roster) rosters.rosters.elementAt(i);
+          roster = (Jid) rosters.rosters.elementAt(i);
           //mw.sendMessageToRoster(_message, roster, this);
       }
   }
+ */
+    /**
+     * Send message to members
+     * @param Message
+     * @author Gabriele Bianchi
+     */
+    public void broadcast(Message _message) {
+        //mw.sendMessageToRoster(_message, roster, this);
+	//for (int i=0; i<jids.size(); i++) {
+        	StringBuffer res = new StringBuffer("<message type='").append(stanzaType).append("' from = '").append(Datas.jid.getFullJid()).append("' to ='").append(name).append("'>").append(_message.getTextAsXML());
+        	if (!threadId.equals("")) {
+         	   res.append("<thread>").append(threadId).append("</thread>");
+       		}
+        	res.append("</message>");
+
+        	Datas.writerThread.write(res.toString());
+	//}
+    }  
   
 }

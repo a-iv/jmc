@@ -15,27 +15,66 @@
 
 package jabber.roster;
 
+import jabber.presence.Presence;
+import util.Contents;
+import com.sun.lwuit.Image;
 /**
  * Jabber ID. It has one of the following form: 
  * - servername
  * - username@servername
  * - username@servername/resource 
+ * 
+ * Modified by Gabriele Bianchi 04/01/2006
  */
-
 
 public class Jid {
 
     private String servername;
     private String username;
+    private String nickname;
     private String resource;
-
-   // ....... constructor .............
+    private String mail = "user@mail.com";
+    private String presence;// = "unavailable";
+    private byte[] avatar = null;
+    public String avatarHash = null;
+    public String phone = null;
+	public String status_message = ""; 
+    public String group = "unfiled";
+   
     /**
      * Constructs a Jid, given its string representation
      * example: "myserver" or "username@myserver" or "username@myserver/resource"
      */
     public Jid(String _jid) {
-        int at = _jid.indexOf('@');
+        int at = _jid.lastIndexOf('@');
+        int slash = _jid.indexOf('/', at);
+
+        if (at==-1) {
+			username = null;
+        } else {
+            username = _jid.substring(0,at);
+        }
+        nickname = username;
+        if (slash==-1) {
+            // no resource
+            servername = _jid.substring(at+1);
+            resource = null;
+        } else {
+            // resource
+            servername = _jid.substring(at+1,slash).trim();
+            resource = _jid.substring(slash+1);
+        }
+		setPresence(Presence.getPresence("unavailable"));
+    }
+    /**
+     * @author Gabriele Bianchi 
+     * @param _jid
+     * @param _presence
+     */
+    public Jid(String _jid, String _presence) {
+
+	presence = _presence;
+        int at = _jid.lastIndexOf('@');
         int slash = _jid.indexOf('/', at);
 
         if (at==-1) {
@@ -43,7 +82,7 @@ public class Jid {
         } else {
             username = _jid.substring(0,at);
         }
-
+        nickname = username;
         if (slash==-1) {
             // no resource
             servername = _jid.substring(at+1);
@@ -55,19 +94,84 @@ public class Jid {
         }
     }
     
-   // ....... fields accessors ........
+    /**
+     * 
+     * @return String
+     */
     public String getServername() {
         return servername;
     }
-    
+    /**
+     * 
+     * @return String
+     */
     public String getUsername() {
+		if (username == null)
+			return servername;
         return username;
     }
-    
+    /**
+     * 
+     * @return Image
+     */
+    public byte[] getAvatar() {
+        return avatar;
+    }
+    /**
+     * 
+     * @return String
+     */
     public String getResource() {
         return resource;
     }
-    
+    /**
+     * 
+     * @return String
+     */
+    public String getPresence() {
+        return presence;
+    }
+
+    /**
+     * 
+     * @param _presence
+     */
+    public void setPresence(String _presence) {
+		  presence = _presence;
+		  status_message = "";
+        return;
+    }
+	/**
+	* 
+	* @param _presence
+	* @param status
+	*/
+	public void setPresence(String _presence, String status)
+	{
+		presence = _presence;
+		status_message = status;
+		return;
+	}
+    /**
+     * @author Gabriele Bianchi 
+     *@return String
+     */
+     public String getMail() {
+        return mail;
+    }
+    /**
+     * @author Gabriele Bianchi 
+     * 
+     * @param _mail
+     */
+    public void setMail(String _mail) {
+		  mail = _mail;
+        return;
+    }
+    /**
+     * 
+     * @param _val
+     */
     public void setResource(String _val) {
         if (_val=="") {
             resource = null;
@@ -89,7 +193,7 @@ public class Jid {
     }
     
     /**
-     * returns the full jid, that is with the eventual resource information
+     * @return the full jid, that is with the eventual resource information
      */
     public String getFullJid() {
         String res = getLittleJid();
@@ -98,6 +202,31 @@ public class Jid {
         }
         return res;
     }
+    
+    public void setAvatar(byte[] img) { //AVATAR
+    	this.avatar = img;
+    }
+    public static Image createAvatar(byte[] img) { //AVATAR
+    	if (img != null) {
+    		try {
+    			
+    			return Image.createImage(img, 0, img.length-1);
+    		}catch(Exception e) {
+    			System.out.println("Error in createAvatar() "+e.getMessage());
+    			return null; 	
+    		}
+    	}else {
+    		// tornare la img di default
+    		try {
+    			
+    			return Contents.displayImage("choice");
+    		}catch(Exception e) {
+    			//System.out.println("Error in createAvatar() "+e.getMessage());
+    			return null; 	
+    		}
+    	}
+    	
+    }
 
    // ...... static methods ...........
     /**
@@ -105,7 +234,9 @@ public class Jid {
      */
     public static String getLittleJid(String _jid) {
         String res;
-        int at = _jid.indexOf('@');
+        int at = _jid.lastIndexOf('@');
+		if (at == -1)
+			return _jid;
         int slash = _jid.indexOf('/', at); 
         
         if (slash == -1) {
@@ -115,5 +246,27 @@ public class Jid {
         }
         return res;
     }
+	/**
+	 * @param _jid
+	 * @return username part
+	 */
+	public static String getUsername(String _jid)
+	{
+		if (_jid.indexOf("@") != -1)
+		{
+			return _jid.substring(0, _jid.lastIndexOf('@'));
+		}
+		else
+			return _jid;
+	}
+	public String getNickname() {
+		
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	
+	
 }
 

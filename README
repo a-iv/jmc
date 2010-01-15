@@ -1,0 +1,31 @@
+JabberMixClient 2.1.1 beta version
+
+JMC is a GPL IM client for Jabber protocol for portable devices. 
+It is based on J2ME (MIDP 2.0 CLDC 1.1) and a modified version of the MicroJabber library (http://micro-jabber.sourceforge.net/).
+
+Archive components:
+JabberMixClient.jar: file to deploy in the device 
+JabberMixClient.jad: descriptor file
+JMCsrc.zip: project source code
+README: this file
+COPYING: GPL licence
+AUTHORS: author info
+doc: the project javadoc
+
+
+
+Source Packages description:
+
+jmc: contains GUI midlet and the jabber stanzas reader
+jmc.connection: contains the connection tools
+jmc.media: contains class for audio/video support
+jabber.roster: contains classes concerning jabber jid, roster management and jud
+jabber.conversation: contains classes to manage chats
+jabber.presence: contains classes for jabber presence management
+jabber.subscription: contains classes for registration to jabber servers and jids subscriptions
+org.bouncycastle.crypto.digests: contains classes for password encryption
+com.twmacinta.util: contains utility classes for MD5 encryption
+com.sun.lwuit: GUI library
+threads: contains the threads for reading/writing Jabber streams and to send/receive SMS
+util: contains utility and storage classes 
+xmlstreamparser: contains classes for xml parsing

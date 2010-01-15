@@ -15,21 +15,33 @@
 
 package jabber.conversation;
 
-import java.util.*;
+import java.util.Vector;
 import xmlstreamparser.*;
-
+import jabber.roster.Jid;
+import com.sun.lwuit.Image;
+/**
+ * Conversation class
+ *
+ *
+ */
 public class Conversation {
   
   public Vector messages;
   public String name;  // pretty string for display: nickname, JID, groupname, subject...
+  public boolean isMulti;
+  public String composing;
+  public Image avatar; //AVATAR
   
   public Conversation(String _name) {
-    messages = new Vector();
+    messages = new Vector(2,1);
     name = _name;
+    isMulti = false;
+    composing = "";
   }
   
   /**
    * New message received
+   * @param _message
    */
   public void appendToMe(Message _message) {
     messages.addElement(_message);
@@ -37,13 +49,24 @@ public class Conversation {
 
   /**
    * Tests if the conversation matches the given message stanza
+   * Modified by Gabriele Bianchi
+   * @param Node
    */
   public boolean match(Node _node) {
+
+     
+      if (Jid.getLittleJid(_node.getValue("from")).equals(Jid.getLittleJid(name)))
+      	return true; 
       return false;
   }
   
+  /**
+   * Not used
+   * @return
+   */
   public boolean canAnswer() {
-      return false;
+	
+      	return false;
   }
   
 }

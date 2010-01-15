@@ -17,35 +17,52 @@ package jabber.conversation;
 
 import xmlstreamparser.*;
 import jabber.roster.*;
+import util.Datas;
+import util.Util;
 
+/**
+ * Class for chat one to one
+ */
 public class SingleChat extends Chat {
-    Roster roster; // the person we are talking with
+    public Jid roster; // the person we are talking with
     
-    public SingleChat(Roster _roster, String _stanzaType, String _threadId) {
-        super(_roster.name, _stanzaType, _threadId);
+    /**
+     * Modified by Gabriele Bianchi 04/01/2006
+     * @param _roster
+     * @param _stanzaType
+     * @param _threadId
+     */
+    public SingleChat(Jid _roster, String _stanzaType, String _threadId) {
+        super(_roster.getNickname(), _stanzaType, _threadId);
         roster = _roster;
+        //if (roster.getAvatar() != null)
+        this.avatar = Jid.createAvatar(roster.getAvatar());
     }
+
     
+    /**
+     * @param _message
+     */
     public void broadcast(Message _message) {
         //mw.sendMessageToRoster(_message, roster, this);
-        String res = "<message type='"+stanzaType+"' "+
-                     "from ='greg@w9f05952/mobile' "+
-                     "to ='"+roster.jid.getFullJid()+"'>"+
-                     _message.getTextAsXML();
+		StringBuffer res = new StringBuffer("<message type='").append(stanzaType).append("' from = '").append(Datas.jid.getFullJid()).append("' to ='").append(Util.formatGtwAddress(roster.getFullJid())).append("'>").append(
+_message.getTextAsXML());
         if (!threadId.equals("")) {
-            res = res + "<thread>" + threadId + "</thread>";
+            res.append("<thread>").append(threadId).append("</thread>");
         }
-        res = res + "</message>";
+        res.append("</message>");
 
-        util.Datas.writerThread.write(res);
+        util.Datas.writerThread.write(res.toString());
     }
     
     /**
      * Tests if the conversation matches the given message stanza
+     * @param _node
+     * @return boolean
      */
     public boolean match(Node _node) {
         boolean res = false;
-        if (Jid.getLittleJid(_node.getValue("from")).equals(roster.jid.getLittleJid())) {
+        if (Jid.getLittleJid(_node.getValue("from")).equals(roster.getLittleJid())) {
             // should also test the threadID? stanzaType?
             res = true;
         }

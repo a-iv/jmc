@@ -1,0 +1,11 @@
+JMC 2.1.1 beta version
+(Jabber Mix Client)
+
+===============================================================
+
+Gabriele Bianchi (gabriele.bianchi@gmail.com) -  Prato, Italy.
+
+The project uses a modified version of MicroJabber (http://micro-jabber.sourceforge.net/) library, 
+a connection class of the Java Jabber library (al@alsutton.com) and the Sun LWUIT gui library
+		
+

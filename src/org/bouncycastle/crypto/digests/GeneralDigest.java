@@ -27,6 +27,7 @@ public abstract class GeneralDigest
 	 * Copy constructor.  We are using copy constructors in place
 	 * of the Object.clone() interface as this interface is not
 	 * supported by J2ME.
+	 * @param t
 	 */
 	protected GeneralDigest(GeneralDigest t)
 	{
@@ -37,6 +38,10 @@ public abstract class GeneralDigest
 		byteCount = t.byteCount;
 	}
 
+	/**
+	 * 
+	 * @param in
+	 */
     public void update(
         byte in)
     {
@@ -51,6 +56,12 @@ public abstract class GeneralDigest
         byteCount++;
     }
 
+    /**
+     * 
+     * @param in
+     * @param inOff
+     * @param len
+     */
     public void update(
         byte[]  in,
         int     inOff,
@@ -91,6 +102,10 @@ public abstract class GeneralDigest
         }
     }
 
+    /**
+     * 
+     *
+     */
     public void finish()
     {
         long    bitLength = (byteCount << 3);
@@ -110,6 +125,10 @@ public abstract class GeneralDigest
         processBlock();
     }
 
+    /**
+     * 
+     *
+     */
     public void reset()
     {
         byteCount = 0;
@@ -120,9 +139,29 @@ public abstract class GeneralDigest
 		}
     }
 
+    /**
+     * 
+     * @param in
+     * @param inOff
+     */
     protected abstract void processWord(byte[] in, int inOff);
 
+    
+    /**
+     * 
+     * @param bitLength
+     */
     protected abstract void processLength(long bitLength);
 
+    /**
+     * 
+     *
+     */
     protected abstract void processBlock();
+    
+    public abstract int doFinal(byte[] out, int outOff);
+
+   public abstract int getDigestSize();
+	
+   public abstract String getAlgorithmName();
 }
